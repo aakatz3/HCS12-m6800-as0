@@ -1,9 +1,9 @@
 {
   "name": "m6800-as0",
-  "displayName": "M6800 Assembly",
-  "description": "Syntax Highlighting for 6800 Assembly (as0)",
-  "version": "0.0.5",
-  "publisher": "RyuStudio",
+  "displayName": "HCS12 Assembly",
+  "description": "Syntax Highlighting for HCS12 Assembly (as0)",
+  "version": "0.0.6",
+  "publisher": "RyuStudioaakatz3",
   "icon": "logo.png",
   "repository": {
     "type": "git",
@@ -58,6 +58,13 @@
         "path": "./syntaxes/m6800-as0.tmLanguage.json"
       }
     ],
+    "themes": [
+      {
+          "label": "Codewarrior",
+          "uiTheme": "vs",
+          "path": "./themes/Codewarrior-color-theme.json"
+      }
+  ],
     "configuration": {
       "type": "object",
       "title": "6800 Assembly Syntax Highlighting (as0) configuration",

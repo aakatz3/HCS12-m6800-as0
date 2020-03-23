@@ -3,6 +3,9 @@
   "name": "Motorola 6800 Assembly Language",
   "patterns": [
     {
+      "include": "#variables"
+    },
+    {
       "include": "#opcodes"
     },
     {
@@ -28,23 +31,27 @@
     "opcodes": {
       "patterns": [
         {
-          "match": "\\b(?i)((asl|asr|lsr|rol|ror)([ab])?)\\b",
+          "match": "\\b(?i)((asl|asr|lsr|rol|ror)([abdxy])?)\\b",
           "name": "keyword.control.opcode.shift.m6800-as0"
         },
         {
-          "match": "\\b(?i)((add|and|adc|bit|eor|ora|sbc|sub|cmp|lda|sta|psh|pul)[ab])\\b",
+          "match": "\\b(?i)((add|and|adc|bit|eor|ora|sbc|sub|cmp|lda|sta|psh|pul)[abdxy])\\b",
           "name": "keyword.control.opcode.ab.m6800-as0"
         },
         {
-          "match": "\\b(?i)((clr|com|dec|inc|neg|tst)([ab])?)\\b",
+          "match": "\\b(?i)((clr|com|dec|inc|neg|tst|ld)([ab])?)\\b",
           "name": "keyword.control.opcode.abmem.m6800-as0"
         },
         {
-          "match": "\\b(?i)(b[ceghlmnprsv][aceilqrst])\\b",
+          "match": "\\b(?i)(((lda|sta)([ab])?)|(ld|st)([dxys]?))\\b",
+          "name": "keyword.control.opcode.mem.m6800-as0"
+        },
+        {
+          "match": "\\b(?i)(b[ceghlmnprsv][aceilqrst]|brclr|brset|bclr|dbne)\\b",
           "name": "keyword.control.opcode.branch.m6800-as0"
         },
         {
-          "match": "\\b(?i)(aba|cba|clc|cli|clv|cpx|cpxa|daa|des|dex|ins|inx|jmp|jsr|lds|ldx|nop|rti|rts|sba|sec|sei|sev|sts|stx|swi|tab|tap|tba|tpa|tsx|txs|wai)\\b",
+          "match": "\\b(?i)(aba|cba|clc|cli|clv|cpx|leas|cpxa|lbhi|leas|bgnd|nop|daa|des|dex|ins|inx|jmp|jsr|lds|ldx|nop|rti|rts|sba|sec|sei|sev|sts|stx|swi|tab|tap|tba|tpa|tsx|txs|wai|mov|movw|movb|bset)\\b",
           "name": "keyword.control.opcode.misc.m6800-as0"
         }
       ]
@@ -72,13 +79,15 @@
           "name": "comment.line.asterisk.m6800-as0"
         },
         {
-          "match": ";.*$",
-          "name": "comment.line.semicolon.m6800-as0"
+          "match": "^(\\w+)(\\t*\\s+|\\t+)(?=.+$)",
+          "name": "asm.label.hcs12"
         },
         {
-          "match": " {8}\\*.*$",
-          "name": "comment.line.asterisk.assembly-list.m6800-as0"
+          "match": ";.*$",
+          "name": "comment.line.semicolon.m6800-as0"
         }
+
+        
       ]
     },
     "strings": {
@@ -92,14 +101,22 @@
         }
       ]
     },
+    "variables": {
+      "patterns": [
+        {
+          "match": "^(\\w+)(\\t*\\s+|\\t+)(?=(?:\\bdc|\\bds|\\bequ))",
+          "name": "variable.hcs12"
+        }
+      ]
+    },
     "directives": {
       "patterns": [
         {
-          "match": "\\b(?i)(end|equ|opt|org|page)\\b",
+          "match": "\\b(?i)(end|equ|opt|org|page|include|xdef|absentry)\\b",
           "name": "keyword.control.directive.m6800-as0"
         },
         {
-          "match": "\\b(?i)(bsz|fcb|fcc|fdb|fill|rmb|zmb)\\b",
+          "match": "\\b(?i)(bsz|fcb|fcc|fdb|fill|rmb|zmb|d[cs]\\.[bw])\\b",
           "name": "keyword.control.directive.data.m6800-as0"
         },
         {
@@ -110,6 +127,18 @@
     },
     "operands": {
       "patterns": [
+        {
+          "match": "\\b[\\s+\\t,]+([+-]?)(@[0-7]+|%[01]+|\\$[A-Fa-f0-9]+|[0-9]+|\\w+),(SP|PC|X|Y|x)\\b",
+          "name": "keyword.operand.index.m6800-as0"
+        },
+        {
+          "match": "\\b[\\s+\\t]+\\#(@[0-7]+|%[01]+|\\$[A-Fa-f0-9]+|[0-9]+)",
+          "name": "keyword.operand.immediate.m6800-as0"
+        },
+        {
+          "match": "\\b[\\s+\\t]+\\#\\w+",
+          "name": "keyword.operand.indirect.m6800-as0"
+        },
         {
           "match": "'.'",
           "name": "string.quoted.single.singlechar.m6800-as0"
@@ -133,14 +162,6 @@
         {
           "match": "(\\$|\\b0x)[A-Fa-f0-9]+\\b",
           "name": "constant.numeric.hex.m6800-as0"
-        },
-        {
-          "match": "(?i)(,x)\\b",
-          "name": "keyword.operand.indexed.m6800-as0"
-        },
-        {
-          "match": "\\b[\\s\\t]+\\#",
-          "name": "keyword.operand.immediate.m6800-as0"
         },
         {
           "match": "'(;|\\[|\\]|\\$|@|#|!| |%|\\+|\\^|\\&|\\*|\\(|\\)|\\{|\\}|\\\\|\\||\\\"|\\-|\\=|\\,|\\:|\\'|\\<|\\>|\\.|\\?|\\/|\\~|\\`)",
