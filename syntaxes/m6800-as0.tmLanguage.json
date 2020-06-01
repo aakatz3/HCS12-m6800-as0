@@ -51,7 +51,7 @@
           "name": "keyword.control.opcode.branch.m6800-as0"
         },
         {
-          "match": "\\b(?i)(aba|cba|clc|cli|clv|cpx|leas|cpxa|lbhi|leas|bgnd|nop|daa|des|dex|ins|inx|jmp|jsr|lds|ldx|nop|rti|rts|sba|sec|sei|sev|sts|stx|swi|tab|tap|tba|tpa|tsx|txs|wai|mov|movw|movb|bset)\\b",
+          "match": "\\b(?i)(tfr|sex|idiv|aba|cba|clc|cli|clv|cpx|leas|cpxa|lbhi|leas|bgnd|nop|daa|des|dex|ins|inx|jmp|jsr|lds|ldx|nop|rti|rts|sba|sec|sei|sev|sts|stx|swi|tab|tap|tba|tpa|tsx|txs|wai|mov|movw|movb|bset)\\b",
           "name": "keyword.control.opcode.misc.m6800-as0"
         }
       ]

@@ -4,7 +4,7 @@ let os = require("os");
 
 function activate(global) {
   console.log('Extension "m6800-as0" activated.');
-
+/*
   let disposable = vscode.commands.registerCommand(
     "m6800-as0.as0assemble",
     function() {
@@ -87,7 +87,7 @@ function activate(global) {
         vscode.window.showErrorMessage("as0: not a source file");
       }
     }
-  );
+  );*/
 }
 exports.activate = activate;
 

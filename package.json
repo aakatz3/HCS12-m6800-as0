@@ -20,33 +20,21 @@
     "onCommand:m6800-as0.as0assemble"
   ],
   "contributes": {
-    "keybindings": [
-      {
-        "command": "m6800-as0.as0assemble",
-        "key": "ctrl-shift-m",
-        "mac": "cmd-m",
-        "when": "editorTextFocus"
-      }
-    ],
-    "commands": [
-      {
-        "command": "m6800-as0.as0assemble",
-        "title": "AS0: Assemble"
-      }
-    ],
     "languages": [
       {
         "id": "m6800-as0",
         "aliases": [
           "6800 Assembly (as0)",
-          "m6800-as0"
+          "m6800-as0",
+          "hcs12-asm"
         ],
         "extensions": [
           ".asm",
           ".s",
           ".list",
           ".out",
-          ".lst"
+          ".lst",
+          ".inc"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -60,56 +48,19 @@
     ],
     "themes": [
       {
-          "label": "Codewarrior",
-          "uiTheme": "vs",
-          "path": "./themes/Codewarrior-color-theme.json"
+        "label": "Codewarrior",
+        "uiTheme": "vs",
+        "path": "./themes/Codewarrior-color-theme.json"
       }
-  ],
-    "configuration": {
-      "type": "object",
-      "title": "6800 Assembly Syntax Highlighting (as0) configuration",
-      "properties": {
-        "m6800-as0.As0Path": {
-          "type": "string",
-          "default": "/usr/local/bin",
-          "description": "as0 path (/usr/local/bin, /c/cygwin64/usr/local/bin, etc.)"
-        },
-        "m6800-as0.Listing": {
-          "type": "boolean",
-          "default": true,
-          "description": "as0 listing option (-l)"
-        },
-        "m6800-as0.ListingExtension": {
-          "type": "string",
-          "default": ".list",
-          "description": "as0 listing output file extension (.list, .lst, .out, etc.)"
-        },
-        "m6800-as0.NoListing": {
-          "type": "boolean",
-          "default": false,
-          "description": "as0 no listing option (-nol)"
-        },
-        "m6800-as0.CrossReference": {
-          "type": "boolean",
-          "default": true,
-          "description": "as0 cross reference table option (-cre)"
-        },
-        "m6800-as0.Symbol": {
-          "type": "boolean",
-          "default": true,
-          "description": "as0 symbol table option (-s)"
-        },
-        "m6800-as0.Cycle": {
-          "type": "boolean",
-          "default": false,
-          "description": "as0 cycle count option (-c)"
-        },
-        "m6800-as0.NoCycle": {
-          "type": "boolean",
-          "default": false,
-          "description": "as0 no cycle count option (-noc)"
-        }
+    ],
+    "configurationDefaults": {
+      "[m6800-as0]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.rulers": [10,20,36,80,120]
       }
     }
-  }
+  },
+  "dependencies": {}
 }
